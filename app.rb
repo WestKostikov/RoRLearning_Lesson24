@@ -25,10 +25,23 @@ post '/Visit' do
 	@barber = params[:barber]
 	@color = params[:color]
 
-	if @username == ''
-		@error = 'Введите имя'
-		return erb :visit
-	end
+	# хеш для валидации параметров
+hh = { 	:username => 'Введите имя',
+  		:phone => 'Введите телефон',
+  		:datetime => 'Введите дату и время' }
+
+# для каждой пары ключ-значение
+hh.each do |key, value|
+  # если параметр пустой
+  if params[key] == ''
+    # переменной @error присвоить value из хеша hh
+    @error = hh[key]
+
+    # вернуть представление visit
+    return erb :visit
+  end
+end
+
 
 	erb "Отлично! #{@username}, Вы записаны на стрижку! Ваш телефон: #{@phone}, дата и время: #{@datetime}, барбер: #{@barber}, цвет краски: #{@color}"
 end
