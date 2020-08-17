@@ -30,17 +30,11 @@ hh = { 	:username => 'Введите имя',
   		:phone => 'Введите телефон',
   		:datetime => 'Введите дату и время' }
 
-# для каждой пары ключ-значение
-hh.each do |key, value|
-  # если параметр пустой
-  if params[key] == ''
-    # переменной @error присвоить value из хеша hh
-    @error = hh[key]
+  	@error = hh.select {|key,_| params[key] == ""}.values.join(", ")
 
-    # вернуть представление visit
+  	if @error != ''
     return erb :visit
   end
-end
 
 
 	erb "Отлично! #{@username}, Вы записаны на стрижку! Ваш телефон: #{@phone}, дата и время: #{@datetime}, барбер: #{@barber}, цвет краски: #{@color}"
