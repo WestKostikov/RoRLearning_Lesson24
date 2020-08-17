@@ -1,2 +1,2 @@
-# RoRLearning, Lesson22
-Repository for Lesson 22
+# RoRLearning, Lesson24
+Repository for Lesson 24
